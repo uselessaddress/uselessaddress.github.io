@@ -191,23 +191,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/09/TetrisWithAI/</loc>
-    <lastmod>2018-05-09T08:58:37.136Z</lastmod>
-    <data>
-        <display>
-        <title>一个带AI的俄罗斯方块游戏</title>
-        <pubTime>2018-05-09T08:58:37.135Z</pubTime>
-        
-        <tag>GameAI</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2018/05/09/curry/</loc>
     <lastmod>2018-05-09T08:58:37.136Z</lastmod>
     <data>
@@ -233,6 +216,23 @@
         <pubTime>2018-05-09T08:58:37.136Z</pubTime>
         
         <tag>项目总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/05/09/TetrisWithAI/</loc>
+    <lastmod>2018-05-09T08:58:37.136Z</lastmod>
+    <data>
+        <display>
+        <title>一个带AI的俄罗斯方块游戏</title>
+        <pubTime>2018-05-09T08:58:37.135Z</pubTime>
+        
+        <tag>GameAI</tag>
          
          
            
