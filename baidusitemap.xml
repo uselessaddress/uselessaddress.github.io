@@ -208,14 +208,14 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/09/cms/</loc>
+    <loc>http://yoursite.com/2018/05/09/TetrisWithAI/</loc>
     <lastmod>2018-05-09T08:58:37.136Z</lastmod>
     <data>
         <display>
-        <title>搭建一个二级结构的CMS(内容管理系统)</title>
-        <pubTime>2018-05-09T08:58:37.136Z</pubTime>
+        <title>一个带AI的俄罗斯方块游戏</title>
+        <pubTime>2018-05-09T08:58:37.135Z</pubTime>
         
-        <tag>项目总结</tag>
+        <tag>GameAI</tag>
          
          
            
@@ -225,14 +225,14 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/09/TetrisWithAI/</loc>
+    <loc>http://yoursite.com/2018/05/09/cms/</loc>
     <lastmod>2018-05-09T08:58:37.136Z</lastmod>
     <data>
         <display>
-        <title>一个带AI的俄罗斯方块游戏</title>
-        <pubTime>2018-05-09T08:58:37.135Z</pubTime>
+        <title>搭建一个二级结构的CMS(内容管理系统)</title>
+        <pubTime>2018-05-09T08:58:37.136Z</pubTime>
         
-        <tag>GameAI</tag>
+        <tag>项目总结</tag>
          
          
            
