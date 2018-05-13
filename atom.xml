@@ -152,27 +152,6 @@
   </entry>
   
   <entry>
-    <title>一道关于JavaScript解析器错误的面试题</title>
-    <link href="http://yoursite.com/2018/05/09/interview/"/>
-    <id>http://yoursite.com/2018/05/09/interview/</id>
-    <published>2018-05-09T08:58:37.137Z</published>
-    <updated>2018-05-09T08:58:37.137Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一道关于JavaScript解析器错误的面试题"><a href="#一道关于JavaScript解析器错误的面试题" class="headerlink" title="一道关于JavaScript解析器错误的面试题"></a>一道关于JavaScript解析器错误的面试题</h2><h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">n</span> = <span class="number">2</span>.toString()</span><br><span class="line">console.log(<span class="built_in">n</span>)</span><br></pre></td></tr></table></figure><p>问输出什么？<br><a id="more"></a><br>答案是控制台报错，原因如下：<br>数字的字面值（literal）不能当作对象使用。这是因为 JavaScript 解析器的一个错误， 它试图将点操作符解析为浮点数字面值的一部分。</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">2</span><span class="selector-class">.toString</span>(); <span class="comment">// 出错：SyntaxError</span></span><br></pre></td></tr></table></figure><p>有很多变通方法可以让数字的字面值看起来像对象。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">2</span>.<span class="selector-class">.toString</span>(); <span class="comment">// 第二个点号可以正常解析</span></span><br><span class="line"><span class="selector-tag">2</span> <span class="selector-class">.toString</span>(); <span class="comment">// 注意点号前面的空格</span></span><br><span class="line">(<span class="number">2</span>)<span class="selector-class">.toString</span>(); <span class="comment">// 2先被计算</span></span><br></pre></td></tr></table></figure></p><p>解释出自：<br><a href="http://bonsaiden.github.io/JavaScript-Garden/zh/" target="_blank" rel="noopener">JavaScript Garden</a></p><h2 id="声明"><a href="#声明" class="headerlink" title="声明:"></a>声明:</h2><p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a>  </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一道关于JavaScript解析器错误的面试题&quot;&gt;&lt;a href=&quot;#一道关于JavaScript解析器错误的面试题&quot; class=&quot;headerlink&quot; title=&quot;一道关于JavaScript解析器错误的面试题&quot;&gt;&lt;/a&gt;一道关于JavaScript解析器错误的面试题&lt;/h2&gt;&lt;h3 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h3&gt;&lt;figure class=&quot;highlight excel&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;n&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;.toString()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(&lt;span class=&quot;built_in&quot;&gt;n&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;问输出什么？&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
     <title>使用frp配置内网穿透</title>
     <link href="http://yoursite.com/2018/05/09/frps/"/>
     <id>http://yoursite.com/2018/05/09/frps/</id>
@@ -209,6 +188,27 @@
     
     
       <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一道关于JavaScript解析器错误的面试题</title>
+    <link href="http://yoursite.com/2018/05/09/interview/"/>
+    <id>http://yoursite.com/2018/05/09/interview/</id>
+    <published>2018-05-09T08:58:37.137Z</published>
+    <updated>2018-05-09T08:58:37.137Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一道关于JavaScript解析器错误的面试题"><a href="#一道关于JavaScript解析器错误的面试题" class="headerlink" title="一道关于JavaScript解析器错误的面试题"></a>一道关于JavaScript解析器错误的面试题</h2><h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">n</span> = <span class="number">2</span>.toString()</span><br><span class="line">console.log(<span class="built_in">n</span>)</span><br></pre></td></tr></table></figure><p>问输出什么？<br><a id="more"></a><br>答案是控制台报错，原因如下：<br>数字的字面值（literal）不能当作对象使用。这是因为 JavaScript 解析器的一个错误， 它试图将点操作符解析为浮点数字面值的一部分。</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">2</span><span class="selector-class">.toString</span>(); <span class="comment">// 出错：SyntaxError</span></span><br></pre></td></tr></table></figure><p>有很多变通方法可以让数字的字面值看起来像对象。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">2</span>.<span class="selector-class">.toString</span>(); <span class="comment">// 第二个点号可以正常解析</span></span><br><span class="line"><span class="selector-tag">2</span> <span class="selector-class">.toString</span>(); <span class="comment">// 注意点号前面的空格</span></span><br><span class="line">(<span class="number">2</span>)<span class="selector-class">.toString</span>(); <span class="comment">// 2先被计算</span></span><br></pre></td></tr></table></figure></p><p>解释出自：<br><a href="http://bonsaiden.github.io/JavaScript-Garden/zh/" target="_blank" rel="noopener">JavaScript Garden</a></p><h2 id="声明"><a href="#声明" class="headerlink" title="声明:"></a>声明:</h2><p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a>  </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一道关于JavaScript解析器错误的面试题&quot;&gt;&lt;a href=&quot;#一道关于JavaScript解析器错误的面试题&quot; class=&quot;headerlink&quot; title=&quot;一道关于JavaScript解析器错误的面试题&quot;&gt;&lt;/a&gt;一道关于JavaScript解析器错误的面试题&lt;/h2&gt;&lt;h3 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h3&gt;&lt;figure class=&quot;highlight excel&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;n&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;.toString()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(&lt;span class=&quot;built_in&quot;&gt;n&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;问输出什么？&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
