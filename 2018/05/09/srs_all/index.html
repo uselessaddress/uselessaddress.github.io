@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>搭建数据分析流程化系统 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="实习项目主要功能：从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据excel的数据进行合理分析，处理生成合适的数据结构返回给前端进行的可视化展示。流程图如下:">
+<meta name="keywords" content="实习项目总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建数据分析流程化系统">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/srs_all/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="实习项目主要功能：从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据excel的数据进行合理分析，处理生成合适的数据结构返回给前端进行的可视化展示。流程图如下:">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/SRS.png">
+<meta property="og:image" content="http://yoursite.com/img/数据展示2.png">
+<meta property="og:image" content="http://yoursite.com/img/数据展示.png">
+<meta property="og:image" content="http://yoursite.com/img/可视化.png">
+<meta property="og:image" content="http://yoursite.com/img/可视化2.png">
+<meta property="og:image" content="http://yoursite.com/img/srs_all.png">
+<meta property="og:updated_time" content="2018-05-09T08:58:37.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建数据分析流程化系统">
+<meta name="twitter:description" content="实习项目主要功能：从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据excel的数据进行合理分析，处理生成合适的数据结构返回给前端进行的可视化展示。流程图如下:">
+<meta name="twitter:image" content="http://yoursite.com/img/SRS.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-srs_all" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/09/srs_all/" class="article-date">
+  	<time datetime="2018-05-09T08:58:37.138Z" itemprop="datePublished">2018-05-09</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      搭建数据分析流程化系统
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习项目总结/">实习项目总结</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实习项目"><span class="toc-number">1.</span> <span class="toc-text">实习项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端部分"><span class="toc-number">2.</span> <span class="toc-text">前端部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端部分"><span class="toc-number">3.</span> <span class="toc-text">后端部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署以及注册系统服务"><span class="toc-number">4.</span> <span class="toc-text">部署以及注册系统服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结："><span class="toc-number">5.</span> <span class="toc-text">总结：</span></a></li></ol>
+			</div>
+		
+		
+        <h2 id="实习项目"><a href="#实习项目" class="headerlink" title="实习项目"></a>实习项目</h2><p>主要功能：从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据excel的数据进行合理分析，处理生成合适的数据结构返回给前端进行的可视化展示。流程图如下:<br><a id="more"></a><br><img src="/img/SRS.png" alt="SRS"><br>除了数据分析的python脚本外，从前端开始到后台，再到数据可视化部分均由我完成，接下来我会简单对整个项目进行总结分析。<br>最后的效果图如下：<br><img src="/img/数据展示2.png" alt="数据展示2"><br><img src="/img/数据展示.png" alt="数据展示2"></p>
+<hr>
+<h2 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h2><p>分为三个Tab</p>
+<ul>
+<li>首先是展示所有项目，每个项目又有子项目，最后需要操作的是每个项目里的子项目，所以这里我采用的是AntD中的折叠面板+Card，用折叠面板表示每个项目点击折叠面板展开所有子项目，子项目是一个个Card，Card上放各种控件来单独绑定每个子项目，比如使用到步骤条来表示当前进行到的步骤，使用输入框来对特定的参数进行配置等；然后引入分页组件来进行分页加载，每10个项目设为一页，首次加载时加载前10条数据，每次点击页数首先查看这页的数据有没有加载过，如果加载过就不再加载，否则就加载当前页的10条数据。</li>
+<li>上面是的数据来源是SQL数据库，所以单开一个Tab处理从excel中读取数据进行分析，也是一个Card，上面放上各种所需控件</li>
+<li>最后一个是数据可视化，这个部分是我觉得有挑战性的地方，因为整个分析流程最后跑出来的是一个excel，这个excel里有各种数据，首先需要做的就是分析这些从数据能获得什么信息，然后去找合适的可视化模型，最后根据模型所需要的json数据，由excel中这样数据结构的数据提取出来，这次我使用到的数据模型是AndV中的矩形树图+词云，模型构思如下：根据最后聚类结果，首先是大量的类别，每个类别下对应有很多项目，每个项目又有多个属性，也就是评价，通过统计评价的频次，前面两层类别和类别里的各个项目，我把他们放到一个两层的矩形树图里，具体例子见：<a href="https://antv.alipay.com/vis/doc/chart/deta" target="_blank" rel="noopener">https://antv.alipay.com/vis/doc/chart/deta</a> 例子1的手机销量展示，在这里我们的类别根据其对应所有评价数的占比放入第一层矩形树图，这时候点击此类目，进入第二层矩形树图，第二层矩形树图对应的是此类目所有项目根据其对应所有评论数放入第二层，这是点击各个项目，我们就在矩形树图的下方生成一个这个项目所有评价的词云，大致思路就是这样，这里是可视化部分的结果：<br><img src="/img/可视化.png" alt="可视化"><br><img src="/img/可视化2.png" alt="可视化2">   </li>
+</ul>
+<hr>
+<h2 id="后端部分"><a href="#后端部分" class="headerlink" title="后端部分"></a>后端部分</h2><ul>
+<li>后端使用flask，主要实现的功能有：</li>
+<li>调用流程化所需的脚本</li>
+<li>从数据库读取项目数据返回前端</li>
+<li>处理分析结果的excel文件转为所需数据格式的json数据并返回前端</li>
+</ul>
+<hr>
+<h2 id="部署以及注册系统服务"><a href="#部署以及注册系统服务" class="headerlink" title="部署以及注册系统服务"></a>部署以及注册系统服务</h2><ul>
+<li>使用gunicorn简单进行部署</li>
+<li>使用Sysv方法注册系统服务</li>
+</ul>
+<hr>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>之前关于这个项目前端的优化链接：<a href="http://constantin.cc/2017/12/29/srs_rebuild/" target="_blank" rel="noopener">http://constantin.cc/2017/12/29/srs_rebuild/</a><br>在搭建整个系统的过程中，有注意到两点，首先是整个流程化系统的监控粒度问题，举个简单的例子，每个流程化过程中的脚本都会有大量的状态信息输出到log中，那么怎么去把我们需要的信息获取到，并选择合适的部分展示给使用的人，让其对整个过程有更加直观方便的了解和管理，我觉得这个部分是我并没有做的很好的地方，我只是简单返回当前流程的行进步骤，没想到合适的方法去获取和实时展示后台的分析过程。还有就是最后将处理结果的excel处理为json格式的数据，最开始我有想做一个简单的系统去进行，也就是你只需要在前端指定所需的json的数据某个是由哪张表的哪些数据来的，然后由后端自动生成这样的数据返回回来，但是我又想到，其实对于这样的数据本身就是高度定制的，不太适合由自动工具去完成了，也就暂时放弃了这样的想法，待以后慢慢构思。</p>
+<p><img src="/img/srs_all.png" alt="SRS"></p>
+<p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/09/srs_rebuild/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          记一次前端React自动化流程系统项目重构优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/09/pm2_nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">简易PM2+Nginx部署流程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

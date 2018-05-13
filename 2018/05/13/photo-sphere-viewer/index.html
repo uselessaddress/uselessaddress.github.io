@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>使用photo-sphere-viewer实现360全景+重力感应 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用photo-sphere-viewer这是一个使用three实现的360全景第三方库，实现效果很不错，这是官方文档，以及DEMO，官网上的文档只是一些API讲解，这里我简单使用vue-cli将其配置到工程中，方便之后开发。">
+<meta name="keywords" content="全景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用photo-sphere-viewer实现360全景+重力感应">
+<meta property="og:url" content="http://yoursite.com/2018/05/13/photo-sphere-viewer/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="使用photo-sphere-viewer这是一个使用three实现的360全景第三方库，实现效果很不错，这是官方文档，以及DEMO，官网上的文档只是一些API讲解，这里我简单使用vue-cli将其配置到工程中，方便之后开发。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-13T09:36:19.912Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用photo-sphere-viewer实现360全景+重力感应">
+<meta name="twitter:description" content="使用photo-sphere-viewer这是一个使用three实现的360全景第三方库，实现效果很不错，这是官方文档，以及DEMO，官网上的文档只是一些API讲解，这里我简单使用vue-cli将其配置到工程中，方便之后开发。">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-photo-sphere-viewer" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/13/photo-sphere-viewer/" class="article-date">
+  	<time datetime="2018-05-13T09:35:14.811Z" itemprop="datePublished">2018-05-13</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用photo-sphere-viewer实现360全景+重力感应
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全景/">全景</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用photo-sphere-viewer"><span class="toc-number">1.</span> <span class="toc-text">使用photo-sphere-viewer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1"><span class="toc-number">1.1.</span> <span class="toc-text">Step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step2"><span class="toc-number">1.2.</span> <span class="toc-text">Step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step3"><span class="toc-number">1.3.</span> <span class="toc-text">Step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现重力感应"><span class="toc-number">1.4.</span> <span class="toc-text">实现重力感应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#END"><span class="toc-number">1.5.</span> <span class="toc-text">END</span></a></li></ol></li></ol>
+			</div>
+		
+		
+        <h2 id="使用photo-sphere-viewer"><a href="#使用photo-sphere-viewer" class="headerlink" title="使用photo-sphere-viewer"></a>使用photo-sphere-viewer</h2><p>这是一个使用three实现的360全景第三方库，实现效果很不错，<a href="https://photo-sphere-viewer.js.org" target="_blank" rel="noopener">这是官方文档</a>，<a href="https://photo-sphere-viewer.js.org/markers.html" target="_blank" rel="noopener">以及DEMO</a>，官网上的文档只是一些API讲解，这里我简单使用vue-cli将其配置到工程中，方便之后开发。</p>
+<a id="more"></a>
+<h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p>使用vue-cli新建工程</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack psv</span><br><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p>引入photo-sphere-viewer</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --<span class="built_in">save</span> photo-<span class="built_in">sphere</span>-viewer</span><br></pre></td></tr></table></figure>
+<p>然后在main.js中引入 import ‘./assets/photo-sphere-viewer.min.css’<br>其中photo-sphere-viewer.min.css需要在node_modules中对应的dist文件夹找到</p>
+<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p>在需要使用的vue组件中添加div+id:photosphere，并给这个div添加宽高<br>然后在mounted中写入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mounted: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"photosphere"</span>);</span><br><span class="line">   <span class="keyword">var</span> PSV = <span class="keyword">new</span> PhotoSphereViewer(&#123;</span><br><span class="line">     panorama:</span><br><span class="line">       <span class="string">"http://tassedecafe.org/wp-content/uploads/2013/01/parc-saint-pierre-amiens.jpg"</span>,</span><br><span class="line">     container: div,</span><br><span class="line">     time_anim: <span class="number">3000</span>,</span><br><span class="line">     navbar: <span class="literal">true</span>,</span><br><span class="line">     navbar_style: &#123;</span><br><span class="line">       backgroundColor: <span class="string">"rgba(58, 67, 77, 0.7)"</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   &lt;!--PSV.startGyroscopeControl()--&gt;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这里，简单的全景窗口已经实现了，如果需要在手机浏览器上开启重力感应的话，还需要费些力气</p>
+<h3 id="实现重力感应"><a href="#实现重力感应" class="headerlink" title="实现重力感应"></a>实现重力感应</h3><p>官网上关于重力感应开启有这样一段话：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Gyroscope support</span><br><span class="line">In order <span class="built_in">to</span> be able <span class="built_in">to</span> respond <span class="built_in">to</span> device gyroscope (gyroscope option),</span><br><span class="line">Photo Sphere Viewer requires <span class="keyword">the</span> following <span class="built_in">files</span> <span class="built_in">from</span> Three.js examples </span><br><span class="line">(also available <span class="keyword">in</span> <span class="literal">three</span>.js-examples Bower package) :</span><br></pre></td></tr></table></figure>
+<p>也就是说需要这个<a href="https://github.com/mrdoob/three.js/blob/master/examples/js/controls/DeviceOrientationControls.js" target="_blank" rel="noopener">example文件</a>，我去找了下，这个文件在three.js的example文件中，是作者自己写的全景重力感应实现例子，这里有篇详细<a href="https://juejin.im/entry/5933ce66a22b9d0058e381b0" target="_blank" rel="noopener">解析的文章</a>，我是到node_modules中的photo-sphere-viewer的dist里去添加，添加到photo-sphere-viewer.js的里面</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (this<span class="selector-class">.config</span><span class="selector-class">.gyroscope</span> &amp;&amp; PSVUtils.checkTHREE(<span class="string">'DeviceOrientationControls'</span>)) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还要注意这里还有一个gyroscope属性，我找到是在DEFAULTS里，没能找到修改接口</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PhotoSphereViewer.DEFAULTS = &#123;</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    gyroscope: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以我直接将gyroscope修改为true，还有个地方，在</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PSVUtils.checkTHREE = <span class="function"><span class="keyword">function</span><span class="params">(components)</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是判断方法有没有在three中，需要添加<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (components === <span class="string">'DeviceOrientationControls'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，把上面注释中的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--PSV.startGyroscopeControl()--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>开启，这样在手机浏览器上就能看到可以用重力感应控制的全景图。</p>
+<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3><p>不知道为什么配置重力感应这么麻烦勒，所以我决定去提issue，看看作者的思路，本配置随时更新。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/13/rn_start/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RN环境配置踩坑总结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

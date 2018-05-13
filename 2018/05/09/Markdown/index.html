@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>React之实用Markdown编辑器使用手册 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开发伊始最近正好在学习React，想写点东西练练手，又想搞点实用的东西，而我对面桌的死宅MZI正好写了一个Markdown的小demo,我就直接去他github一把梭子搞下来，从而开始了一条不归路。    使用和源码 点击这里直接使用    点击这里查看源码    如果觉得不错的话别忘了给个♥">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React之实用Markdown编辑器使用手册">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/Markdown/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="开发伊始最近正好在学习React，想写点东西练练手，又想搞点实用的东西，而我对面桌的死宅MZI正好写了一个Markdown的小demo,我就直接去他github一把梭子搞下来，从而开始了一条不归路。    使用和源码 点击这里直接使用    点击这里查看源码    如果觉得不错的话别忘了给个♥">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/markdown.jpg">
+<meta property="og:updated_time" content="2018-05-09T08:58:37.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React之实用Markdown编辑器使用手册">
+<meta name="twitter:description" content="开发伊始最近正好在学习React，想写点东西练练手，又想搞点实用的东西，而我对面桌的死宅MZI正好写了一个Markdown的小demo,我就直接去他github一把梭子搞下来，从而开始了一条不归路。    使用和源码 点击这里直接使用    点击这里查看源码    如果觉得不错的话别忘了给个♥">
+<meta name="twitter:image" content="http://yoursite.com/img/markdown.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/09/Markdown/" class="article-date">
+  	<time datetime="2018-05-09T08:58:37.135Z" itemprop="datePublished">2018-05-09</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React之实用Markdown编辑器使用手册
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发伊始"><span class="toc-number">1.</span> <span class="toc-text">开发伊始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用和源码"><span class="toc-number">2.</span> <span class="toc-text">使用和源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单功能介绍"><span class="toc-number">3.</span> <span class="toc-text">简单功能介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#声明"><span class="toc-number">4.</span> <span class="toc-text">声明</span></a></li></ol>
+			</div>
+		
+		
+        <h2 id="开发伊始"><a href="#开发伊始" class="headerlink" title="开发伊始"></a>开发伊始</h2><p>最近正好在学习React，想写点东西练练手，又想搞点实用的东西，而我对面桌的<a href="https://blog.mzisite.me/" target="_blank" rel="noopener">死宅MZI</a>正好写了一个Markdown的小demo,我就直接去他github一把梭子搞下来，从而开始了一条不归路。  </p>
+<hr>
+<h2 id="使用和源码"><a href="#使用和源码" class="headerlink" title="使用和源码"></a>使用和源码</h2><ul>
+<li><p><a href="https://markdown.constantin.cc/" target="_blank" rel="noopener">点击这里直接使用</a>  </p>
+</li>
+<li><p><a href="https://github.com/uselessaddress/MarkdownComponent" target="_blank" rel="noopener">点击这里查看源码</a> </p>
+</li>
+</ul>
+<p>如果觉得不错的话别忘了给个♥</p>
+<hr>
+<a id="more"></a>
+<h2 id="简单功能介绍"><a href="#简单功能介绍" class="headerlink" title="简单功能介绍"></a>简单功能介绍</h2><ol>
+<li><p>首先声明目前转换markdown语法字符串的功能是直接使用<a href="https://www.npmjs.com/package/markdown-to-jsx" target="_blank" rel="noopener">markdown-to-jsx</a>这个npm包，不排除以后会自己手撸一个，因为目前的markdown还是有不少问题，比如不能自订图片大小就很蛋疼。</p>
+</li>
+<li><p>简单的缓存功能，直接把当前的文本信息储存到浏览器的localStorage里，这样你不小心关掉编辑器或者下次打开也能接着写啦，如果想清理，请点击右边的全部清除按钮。</p>
+</li>
+<li><p>顶上的工具栏是特别滴实用的，从左到又依次是标题、粗体、斜体、图片、引用、代码块、链接、无序列表、有序列表、换行和换行添加一条分隔横线（这个功能是对面桌的死宅搞出来的，逃~</p>
+</li>
+<li><p>有个全屏预览效果，点击预览界面左上角的按钮就可以看到了。</p>
+</li>
+<li><p>提供文件下载功能，这个功能主要依靠HTML5的File API 实现，直接可以帮你把写的文件下载为md文件到你想要的文件目录，这里有篇不错的教程<a href="http://www.cnblogs.com/zichi/p/html5-file-api.html" target="_blank" rel="noopener">HTML5 File API </a>，可以先看看，之后我也会写写简单用法。</p>
+</li>
+<li><p>解决了文本框Tab键点击跳到下个模块的问题</p>
+</li>
+<li><p>解决Ctrl+Z的问题，实现方法和上面的Tab一样是重写了文本框区域键盘的按下事件，也就是React里的onKeyDown事件。</p>
+</li>
+<li><p>还有一些功能暂时没有开发，只是设想，比如右上方的发表文章按钮，就是想着可以点击后直接将文章发表到博客里，还有代码高亮、左右同步翻页，右边栏的行数、返回顶部按钮、从本地导入文件、简单响应式等，敬请期待接下来的版本~</p>
+</li>
+<li><p>接下来还会就各个功能点写些具体实现的介绍。</p>
+</li>
+</ol>
+<hr>
+<p><img src="/img/markdown.jpg" alt="By:WLOP"></p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a><br>链接 ： <a href="http://constantin.cc/2017/05/03/Markdown/" target="_blank" rel="noopener">http://constantin.cc/2017/05/03/Markdown/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/09/TetrisWithAI/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          一个带AI的俄罗斯方块游戏
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

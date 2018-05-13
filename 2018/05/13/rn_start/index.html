@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>RN环境配置踩坑总结 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="同步参考：https://reactnative.cn/docs/0.51/getting-started.html#content   平台：macOs 10.13.3   工具：Xcode，Android Studio  最终实现： 连接安卓真机自动安装apk，查看结果 使用xcode打开ios模拟器调试代码">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RN环境配置踩坑总结">
+<meta property="og:url" content="http://yoursite.com/2018/05/13/rn_start/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="同步参考：https://reactnative.cn/docs/0.51/getting-started.html#content   平台：macOs 10.13.3   工具：Xcode，Android Studio  最终实现： 连接安卓真机自动安装apk，查看结果 使用xcode打开ios模拟器调试代码">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-13T09:37:10.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RN环境配置踩坑总结">
+<meta name="twitter:description" content="同步参考：https://reactnative.cn/docs/0.51/getting-started.html#content   平台：macOs 10.13.3   工具：Xcode，Android Studio  最终实现： 连接安卓真机自动安装apk，查看结果 使用xcode打开ios模拟器调试代码">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-rn_start" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/13/rn_start/" class="article-date">
+  	<time datetime="2018-05-13T09:34:23.266Z" itemprop="datePublished">2018-05-13</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RN环境配置踩坑总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#最终实现："><span class="toc-number">1.</span> <span class="toc-text">最终实现：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step1"><span class="toc-number">1.1.</span> <span class="toc-text">Step1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step2"><span class="toc-number">1.2.</span> <span class="toc-text">Step2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step3"><span class="toc-number">1.3.</span> <span class="toc-text">Step3:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step4"><span class="toc-number">1.4.</span> <span class="toc-text">Step4:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#End"><span class="toc-number">1.5.</span> <span class="toc-text">End</span></a></li></ol></li></ol>
+			</div>
+		
+		
+        <blockquote>
+<p>同步参考：<a href="https://reactnative.cn/docs/0.51/getting-started.html#content" target="_blank" rel="noopener">https://reactnative.cn/docs/0.51/getting-started.html#content</a></p>
+</blockquote>
+<blockquote>
+<p>平台：macOs 10.13.3</p>
+</blockquote>
+<blockquote>
+<p>工具：Xcode，Android Studio</p>
+</blockquote>
+<h3 id="最终实现："><a href="#最终实现：" class="headerlink" title="最终实现："></a>最终实现：</h3><ul>
+<li>连接安卓真机自动安装apk，查看结果</li>
+<li>使用xcode打开ios模拟器调试代码</li>
+</ul>
+<a id="more"></a>
+<h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1:"></a>Step1:</h4><p>  安装RN命令行工具：react-native-cli，并新建项目hello_world</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g react-<span class="keyword">native</span>-cli</span><br><span class="line">react-<span class="keyword">native</span> init hello_world</span><br><span class="line">cd hello_world</span><br></pre></td></tr></table></figure>
+<p>这时候需要把package.json中的</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"babel-preset-react-native"</span>: <span class="string">"4.0.0"</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改为4.0.0，不然在ios这边可能会遇到这个错误：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed <span class="keyword">to</span> load bundle: Cannot <span class="keyword">read</span> <span class="keyword">property</span> <span class="string">'throwIfClosureRequired'</span> <span class="keyword">of</span> undefined</span><br></pre></td></tr></table></figure>
+<p>详见：<a href="https://github.com/facebook/react-native/issues/18962" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/18962</a></p>
+<p>最后删掉node_modules和package-lock.json文件重新npm install下就好了</p>
+<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2:"></a>Step2:</h4><p>  去App Store或者官网下载Xcode和AS</p>
+<p>  AS按照上面同步参考中的配置进行安装</p>
+<h4 id="Step3"><a href="#Step3" class="headerlink" title="Step3:"></a>Step3:</h4><p>  先来试试安卓，当我们把AS配置好后，需要按照上面同步参考配置下<a href="https://reactnative.cn/docs/0.51/getting-started.html#android_home%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" target="_blank" rel="noopener">ANDROID_HOME环境变量</a>，连接你的安卓手机，打开调试，然后安装adb，通过adb devices查看到你的设备，最后运行</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native <span class="keyword">run</span><span class="bash">-android</span></span><br></pre></td></tr></table></figure>
+<p>就会自动安装apk到你的手机，打开就能看到你的app了</p>
+<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4:"></a>Step4:</h4><p>  接下来是ios设备，你只需用Xcode打开项目中ios文件夹里的hello_world.xcodeproj,然后点击运行按钮，第一次build会比较慢，之后就会很快了，build好之后就能在模拟器里看到欢迎界面了。</p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>  简单用两种方式配置了两种环境的RN项目启动，可能还有其他问题，以后遇到再慢慢补充了</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/13/photo-sphere-viewer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          使用photo-sphere-viewer实现360全景+重力感应
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/09/ssh_tunnel/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用ssh -L 搭一个本地转发隧道访问内网数据库</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

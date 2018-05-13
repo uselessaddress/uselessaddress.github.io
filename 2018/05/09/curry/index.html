@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>一道柯里化函数问题 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题来自30-seconds-of-code题目如下:Use recursion. If the number of provided arguments (args) is sufficient, call the passed function f. Otherwise return a curried function f that expects the rest of the argum">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一道柯里化函数问题">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/curry/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="问题来自30-seconds-of-code题目如下:Use recursion. If the number of provided arguments (args) is sufficient, call the passed function f. Otherwise return a curried function f that expects the rest of the argum">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-09T08:58:37.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一道柯里化函数问题">
+<meta name="twitter:description" content="问题来自30-seconds-of-code题目如下:Use recursion. If the number of provided arguments (args) is sufficient, call the passed function f. Otherwise return a curried function f that expects the rest of the argum">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-curry" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/09/curry/" class="article-date">
+  	<time datetime="2018-05-09T08:58:37.136Z" itemprop="datePublished">2018-05-09</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一道柯里化函数问题
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题来自30-seconds-of-code"><span class="toc-number">1.</span> <span class="toc-text">问题来自30-seconds-of-code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目如下"><span class="toc-number">2.</span> <span class="toc-text">题目如下:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目大意"><span class="toc-number">3.</span> <span class="toc-text">题目大意:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">4.</span> <span class="toc-text">解题思路:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码解析"><span class="toc-number">5.</span> <span class="toc-text">代码解析:</span></a></li></ol>
+			</div>
+		
+		
+        <h3 id="问题来自30-seconds-of-code"><a href="#问题来自30-seconds-of-code" class="headerlink" title="问题来自30-seconds-of-code"></a>问题来自<a href="https://github.com/Chalarangelo/30-seconds-of-code#curry" target="_blank" rel="noopener">30-seconds-of-code</a></h3><h3 id="题目如下"><a href="#题目如下" class="headerlink" title="题目如下:"></a>题目如下:</h3><p>Use recursion. If the number of provided arguments (args) is sufficient, call the passed function f. Otherwise return a curried function f that expects the rest of the arguments. If you want to curry a function that accepts a variable number of arguments (a variadic function, e.g. Math.min()), you can optionally pass the number of arguments to the second parameter arity.</p>
+<a id="more"></a>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意:"></a>题目大意:</h3><p>使用柯里化的方法给一个指定的函数链式传参并返回执行结果，参数长度可控，例如Math.pow需要2个参数，那么就递归的方法依次传入2,10然后返回执行结果。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路:"></a>解题思路:</h3><p>首先是声明柯里函数:curry，第一个参数表示需要传参执行的函数，然后使用自调用方法传入参数数组初值[]，并返回一个函数接受第一个参数，这时候next函数中的prevArgs是[]，返回的新函数传入(2),参数数组变为[2]，因为Math.pow需要的是两个参数，所以继续调用next，接着返回新的函数传入(10)，最后参数数组变为[2,10]，并执行Math.pow(2,10)最后返回1024</p>
+<h3 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析:"></a>代码解析:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> curry = <span class="function">(<span class="params">f, arity = f.length</span>) =&gt;</span>  <span class="comment">//f.length表示f的形参数目</span></span><br><span class="line">(next = <span class="function"><span class="params">prevArgs</span> =&gt;</span></span><br><span class="line">  nextArg =&gt; &#123;              <span class="comment">//返回函数接受下一个参数</span></span><br><span class="line">    <span class="keyword">const</span> args = [ ...prevArgs, nextArg ];</span><br><span class="line">    <span class="keyword">return</span> args.length &gt;= arity ? f(...args) : next(args);</span><br><span class="line">    <span class="comment">//如果参数长度达到需求长度则将现有参数传入f执行，否则将现有参数作传入下个next做为prevArgs</span></span><br><span class="line">  &#125;</span><br><span class="line">)([]);                      <span class="comment">//自调用传入[]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(curry(<span class="built_in">Math</span>.pow)(<span class="number">2</span>)(<span class="number">10</span>))  <span class="comment">//1024</span></span><br><span class="line"><span class="built_in">console</span>.log(curry(<span class="built_in">Math</span>.min,<span class="number">3</span>)(<span class="number">10</span>)(<span class="number">50</span>)(<span class="number">2</span>))  <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>简易写法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> curry = <span class="function"><span class="keyword">function</span>(<span class="params">f,arity=f.length</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> next = <span class="function"><span class="keyword">function</span>(<span class="params">prevArgs</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">nextArgs</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> args = [...prevArgs,nextArgs];</span><br><span class="line">            <span class="keyword">return</span> args.length &gt;= arity ? f(...args) : next(args)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next([])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(curry(<span class="built_in">Math</span>.pow)(<span class="number">2</span>)(<span class="number">10</span>))  <span class="comment">//1024</span></span><br><span class="line"><span class="built_in">console</span>.log(curry(<span class="built_in">Math</span>.min,<span class="number">3</span>)(<span class="number">10</span>)(<span class="number">50</span>)(<span class="number">2</span>))  <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/09/es6-tag/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          从 ES6 的标签( tag )函数聊起
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/09/cms/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建一个二级结构的CMS(内容管理系统)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

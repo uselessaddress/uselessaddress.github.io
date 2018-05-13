@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>搭建一个二级结构的CMS(内容管理系统) | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目简介&amp;nbsp;&amp;nbsp;主要功能是汇总统计二级用户上传的Excel表单。原有项目是很老的C/S系统，需要管理员手动进行文件上传而且没有实现文件正确性校验，所以这次重新更新为B/S系统，修改为二级结构，并添加文件正确性校验。项目为二级结构，一级结构为管理员，管理员能对二级单位的信息进行增、删、改，并选择时间开启系统和关闭系统，最后汇总统计由二级机构上传的Excel文件，得到最后的统计结果并下">
+<meta name="keywords" content="项目总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建一个二级结构的CMS(内容管理系统)">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/cms/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="项目简介&amp;nbsp;&amp;nbsp;主要功能是汇总统计二级用户上传的Excel表单。原有项目是很老的C/S系统，需要管理员手动进行文件上传而且没有实现文件正确性校验，所以这次重新更新为B/S系统，修改为二级结构，并添加文件正确性校验。项目为二级结构，一级结构为管理员，管理员能对二级单位的信息进行增、删、改，并选择时间开启系统和关闭系统，最后汇总统计由二级机构上传的Excel文件，得到最后的统计结果并下">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/cms.jpg">
+<meta property="og:updated_time" content="2018-05-09T08:58:37.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建一个二级结构的CMS(内容管理系统)">
+<meta name="twitter:description" content="项目简介&amp;nbsp;&amp;nbsp;主要功能是汇总统计二级用户上传的Excel表单。原有项目是很老的C/S系统，需要管理员手动进行文件上传而且没有实现文件正确性校验，所以这次重新更新为B/S系统，修改为二级结构，并添加文件正确性校验。项目为二级结构，一级结构为管理员，管理员能对二级单位的信息进行增、删、改，并选择时间开启系统和关闭系统，最后汇总统计由二级机构上传的Excel文件，得到最后的统计结果并下">
+<meta name="twitter:image" content="http://yoursite.com/img/cms.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-cms" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/09/cms/" class="article-date">
+  	<time datetime="2018-05-09T08:58:37.136Z" itemprop="datePublished">2018-05-09</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      搭建一个二级结构的CMS(内容管理系统)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目总结/">项目总结</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目简介"><span class="toc-number">1.</span> <span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用的技术"><span class="toc-number">2.</span> <span class="toc-text">使用的技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结及技术细节讲解"><span class="toc-number">3.</span> <span class="toc-text">总结及技术细节讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">3.1.</span> <span class="toc-text">总结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部分技术细节："><span class="toc-number">3.2.</span> <span class="toc-text">部分技术细节：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#声明"><span class="toc-number">5.</span> <span class="toc-text">声明</span></a></li></ol>
+			</div>
+		
+		
+        <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a><strong>项目简介</strong></h2><p>&nbsp;&nbsp;主要功能是汇总统计二级用户上传的Excel表单。原有项目是很老的C/S系统，需要管理员手动进行文件上传而且没有实现文件正确性校验，所以这次重新更新为B/S系统，修改为二级结构，并添加文件正确性校验。项目为二级结构，一级结构为管理员，管理员能对二级单位的信息进行增、删、改，并选择时间开启系统和关闭系统，最后汇总统计由二级机构上传的Excel文件，得到最后的统计结果并下载。二级机构使用线下发放的账号密码登陆，下载模板文件，然后根据模板文件的内容填写完毕后上传至服务器，进行文件正确性校验和功能校验，判断是否符合填写要求，给出反馈，保存文件。</p>
+<hr>
+<a id="more"></a>
+<h2 id="使用的技术"><a href="#使用的技术" class="headerlink" title="使用的技术"></a><strong>使用的技术</strong></h2><ul>
+<li>前端：  <ul>
+<li>react/redux(数据状态管理)/react-router(路由)/webpack</li>
+</ul>
+</li>
+<li>后端：<ul>
+<li>express(node框架)/mongoose(数据库)</li>
+</ul>
+</li>
+<li>服务器：<ul>
+<li>pm2/nginx</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="总结及技术细节讲解"><a href="#总结及技术细节讲解" class="headerlink" title="总结及技术细节讲解"></a><strong>总结及技术细节讲解</strong></h2><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>&nbsp;&nbsp;这个项目前后花了20天时间，因为是内部使用的系统所以不方便开源了；这里我简单做一个总结，并写写在开发过程中遇到的一些问题。这次写法还是采用比较熟练的前后端分离写法，一开始分析好需求，然后构建RESTful API,就开始从前端开始写了，写前端还好，比较熟练，但是也在写redux的时候遇到些问题，具体表现为有的状态始终检测不到更新，以及异步请求的部分还不熟练，试着调试了两天没解决，想到Redux作者说过:</p>
+<blockquote>
+<p>“只有遇到 React 实在解决不了的问题，你才需要 Redux 。”</p>
+</blockquote>
+<p>所以担心项目的稳定性，我重新构建了一下React的组件，把redux给去除了，毕竟项目数据量不算大，react完全能胜任了。前端完成后，接着写后端，每实现一个功能就和前端进行对接测试，这个过程还挺有意思的，有时候出了bug一时间摸不清到底是前端出了问题还是后端，就一点点的去排除，这种没法互相甩锅的情况也是挺有趣的。还有就是后端这边的核心功能就是Excel的处理，这次也学习到了许多node处理excel的方法，接下来会做一个讲解。</p>
+<h3 id="部分技术细节："><a href="#部分技术细节：" class="headerlink" title="部分技术细节："></a>部分技术细节：</h3><ul>
+<li><p>前端路由：  </p>
+<ul>
+<li>使用react-router的HashRouter，而不是使用BrowserRouter是因为其重定向只能到首页，无法停留在当前页，还有就是使用了基于HTML5的pushState和replaceState，存在兼容性问题。</li>
+</ul>
+</li>
+<li><p>异步请求：  </p>
+<ul>
+<li><p>使用fetch，好处是能够向promise那样链式使用，解决兼容性问题需要使用’isomorphic-fetch’和’es6-promise’这两个包，还需要注意fetch不会自带cookie,所以需要在请求中加入</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">credentials:</span> <span class="string">'include'</span></span><br></pre></td></tr></table></figure>
+<p>如果是本地调试还要在后端设置下跨域：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res.set(&#123;</span><br><span class="line">    'Access-Control-Allow-Origin': 'http://localhost:<span class="number">8080</span>',</span><br><span class="line">    'Access-Control-Allow-Credentials': 'true'</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>文件上传：  </p>
+<ul>
+<li><p>前端部分：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"file"</span> accept=<span class="string">".xlsx"</span> onChange=&#123;<span class="keyword">this</span>.handleChangeFile&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>在这里选择文件的变化，然后在上传时使用FormData异步上传</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let formData = new FormData();</span><br><span class="line">formData.append(<span class="string">"filedata"</span>,this.<span class="keyword">state</span>.file[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后端部分：<br>使用multer这个文件上传中间件，配置代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> multer = <span class="built_in">require</span>(<span class="string">'multer'</span>);</span><br><span class="line"><span class="keyword">let</span> storage = multer.diskStorage(&#123;</span><br><span class="line">    destination:<span class="function"><span class="keyword">function</span>(<span class="params">req,file,cb</span>)</span>&#123;</span><br><span class="line">        cb(<span class="literal">null</span>,<span class="string">'./excel'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    filename:<span class="function"><span class="keyword">function</span>(<span class="params">req,file,cb</span>)</span>&#123;</span><br><span class="line">        cb(<span class="literal">null</span>,file.originalname);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> upload = multer(&#123;</span><br><span class="line">    storage:storage</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = upload;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'/user/file'</span>, upload.single(<span class="string">'filedata'</span>), <span class="function"><span class="keyword">function</span> <span class="params">(req, res, next)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//your code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>解决contentEditable属性的Warning  </p>
+<ul>
+<li><p>在使用contentEditable这个属性将当前区域变为可编辑区域时，会有这样的warning出现：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A component <span class="keyword">is</span> contentEditable <span class="keyword">and</span> <span class="keyword">contains</span> children managed <span class="keyword">by</span> React. It <span class="keyword">is</span> now your responsibility <span class="keyword">to</span> guarantee <span class="keyword">that</span> none <span class="keyword">of</span> those nodes are unexpectedly modified <span class="keyword">or</span> duplicated. This <span class="keyword">is</span> probably <span class="keyword">not</span> intentional.</span><br></pre></td></tr></table></figure>
+<p>由于使用了多个这样的属性，所以必须要解决这个出现的warning，然后我去翻看了react的github，在issue里面找到了相关的问答，其中在<a href="https://github.com/facebook/react/issues/5837" target="_blank" rel="noopener">#5837</a>中看到大佬们的相关讨论，随后又找到了<a href="https://github.com/facebook/react/pull/6112" target="_blank" rel="noopener">#6112</a>就彻底解决了这个warning，就是在有contentEditable属性的标签中加入<code>suppressContentEditableWarning</code>这个属性就解决了。</p>
+</li>
+</ul>
+</li>
+<li><p>node处理Excel表格：  </p>
+<ul>
+<li>这次熟悉了node处理excel的一些操作，首先的就是使用<code>node-xlsx</code>，这个包可以对excel里的数据进行解析处理，非常的方便实现了数据的校验，查看数据填写是否符合要求，并及时的给出反馈。</li>
+<li>还找了一个能将处理好的数据渲染到模板excel上的神器，叫<a href="https://github.com/sail-sail/ejsExcel" target="_blank" rel="noopener">ejsexcel</a>,其如同node的服务器渲染模板ejs一般，你只需要在模板excel里面写好对应的规则，然后在渲染时使用此规则就能将数据渲染到上面去，所以非常的方便的保留excel的模板，不至于在输出数据生成最后的结果excel时打乱已经写好的格式。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>使用解释器校验excel内容及统计文件内容：  <ul>
+<li>在校验文件内容时，考虑到这些校验的规则随时可能修改，所以就写了一个内部解释器，管理员在修改规则时，只需要修改规则的配置文件，不用我们去修改代码，解释器会根据修改好配置文件进行执行，而之后的汇总处理中也使用的相同的思想，如有改动就只需要去修改配置文件的内容，而不用修改相应的代码；</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h2><p>&nbsp;&nbsp;这个项目下来，收获挺大的，主要是对前后端写法的项目有了比较通透了解，但是也局限于这种写法，由于其他很多的写法尚没有了解，比如Java和Python，所以依旧需要学习很多，还有就是发现了很多基础依旧不牢固，这也是接下来一段事情了，得抽空重新去夯实基础的知识。<br>总之还是</p>
+<blockquote>
+<p>“路漫漫其修远兮，吾将上下而求索。”</p>
+</blockquote>
+<p><img src="/img/cms.jpg" alt="cms"></p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a><br>链接 ： <a href="http://constantin.cc/2017/09/18/cms/" target="_blank" rel="noopener">http://constantin.cc/2017/09/18/cms/</a>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/09/curry/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          一道柯里化函数问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/09/Postcss/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Webpack配置CSS预编译器Less+后处理器Postcss的Autoprefixer功能</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>

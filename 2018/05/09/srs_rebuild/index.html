@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#a4cfdf">
+  
+  <title>记一次前端React自动化流程系统项目重构优化 | Constantin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="起因最近在正在某公司的数据分析部门实习，前段时间做了一个自动化流程系统，主要功能是从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据得到excel的数据进行合理分析，处理成合适的数据结构返回给前端进行的可视化展示。先来看看当时的核心功能代码截图：">
+<meta name="keywords" content="实习项目总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次前端React自动化流程系统项目重构优化">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/srs_rebuild/index.html">
+<meta property="og:site_name" content="Constantin">
+<meta property="og:description" content="起因最近在正在某公司的数据分析部门实习，前段时间做了一个自动化流程系统，主要功能是从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据得到excel的数据进行合理分析，处理成合适的数据结构返回给前端进行的可视化展示。先来看看当时的核心功能代码截图：">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/srs_before.png">
+<meta property="og:image" content="http://yoursite.com/img/SRS.png">
+<meta property="og:image" content="http://yoursite.com/img/srs_end.png">
+<meta property="og:updated_time" content="2018-05-09T08:58:37.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次前端React自动化流程系统项目重构优化">
+<meta name="twitter:description" content="起因最近在正在某公司的数据分析部门实习，前段时间做了一个自动化流程系统，主要功能是从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据得到excel的数据进行合理分析，处理成合适的数据结构返回给前端进行的可视化展示。先来看看当时的核心功能代码截图：">
+<meta name="twitter:image" content="http://yoursite.com/img/srs_before.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Constantin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/head(2).png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Constantin</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+				        
+							<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+				        
+							<li><a href="http://ingress.constantin.cc">ingress</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="/" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/GameAI/" style="font-size: 10px;">GameAI</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/全景/" style="font-size: 10px;">全景</a> <a href="/tags/内网穿透/" style="font-size: 10px;">内网穿透</a> <a href="/tags/实习项目总结/" style="font-size: 20px;">实习项目总结</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/项目总结/" style="font-size: 20px;">项目总结</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mzi.red">MZI</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://sanmumuzi.github.io">sanmumuzi</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://frankrx41.github.io/">FrankRx41</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://soiomon.github.io/">Solomon</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">NJUPT、前端、Ingress-Enlightened</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>	
+	<div class="hide-left">
+	</div>			
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Constantin</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head(2).png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Constantin</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="https://www.instagram.com/prconstantin/">ins</a></li>
+		        
+					<li><a href="https://twitter.com/PrConstantine?lang=zh-cn">twitter</a></li>
+		        
+					<li><a href="http://ingress.constantin.cc">ingress</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/uselessaddress" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-srs_rebuild" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      
+
+<a href="/2018/05/09/srs_rebuild/" class="article-date">
+  	<time datetime="2018-05-09T08:58:37.138Z" itemprop="datePublished">2018-05-09</time>
+  	<br/>
+    
+        <span id="busuanzi_container_page_pv" style="color:DarkGray">
+        view <span id="busuanzi_value_page_pv"></span> times 
+        </span>
+    
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次前端React自动化流程系统项目重构优化
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习项目总结/">实习项目总结</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+
+
+      <div class="back-top"></div>
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#起因"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从画系统流程图开始"><span class="toc-number">2.</span> <span class="toc-text">从画系统流程图开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进一步优化"><span class="toc-number">3.</span> <span class="toc-text">进一步优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+			</div>
+		
+		
+        <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>最近在正在某公司的数据分析部门实习，前段时间做了一个自动化流程系统，主要功能是从数据库读取所有项目信息进行展示，分析人员选择项目，输入配置信息开始分析流程，分析过程就是调用已有数据分析的python脚本，最后将结果生成excel，我再根据得到excel的数据进行合理分析，处理成合适的数据结构返回给前端进行的可视化展示。先来看看当时的核心功能代码截图：<br><a id="more"></a><br><img src="/img/srs_before.png" alt="srs_before"><br>是直接把所有功能揉在了一起，因为使用了antd，所以直接把CSS也写到了js里，当时写完还没觉得有什么问题，一共500多行，但是一个月后又有一个新的流程化工作，我就想直接把这个前端套起来用，但是发现整个项目可维护性，可扩展性实在太差，很多东西自己都整理理不清除了，所以有了这次重构。</p>
+<hr>
+<h3 id="从画系统流程图开始"><a href="#从画系统流程图开始" class="headerlink" title="从画系统流程图开始"></a>从画系统流程图开始</h3><p>这一次，为了清晰思路，在最开始我就画好流程图，来观察整个系统的结构，首先是决定引入Redux来做数据状态管理，把数据源存储和数据更新给剥离开，使得核心代码更加专注与后台进行数据交互，而且这样跨组件通信更加方便，其次是将核心功能分离、分层，将内容展示和数据可视化部分和两个独立功能分开，内容展示中又把数据渲染和分页加载分开，也就是说在数据加载的部分里不进行数据渲染，将数据渲染单独放到一边；数据可视化部分也是把数据渲染和数据获取给分开了，最后再把样式从Js中抽离；最后得到的完整流程图如下：<br><img src="/img/SRS.png" alt="SRS"></p>
+<hr>
+<h3 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h3><p>完成流程图后就一直跟着流程图在重构，最后的效果很不错，极大的提升的整个项目的可维护性和可扩展性，但是还是有很多问题，我接着做了进一步优化，首先是将一些全局变量添加到配置文件中，比如请求的URL，一些常用的路径信息等，然后又对redux进行优化，首先就是把redux中那些不涉及到跨组件通信的数据放回到组件本身的State中，这样一来，redux中需要更新的数据就是需要经由后台加载更新的数据了，而这些数据由于流程图中做到了数据加载和数据渲染组件的分离，就能非常清晰的获取他们的流动和更新了。</p>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>首先是这次使用到的技术栈，react+redux，然后是使用到了antd和antv来做UI套件和数据可视化，这2个系统下来已经使用的比较熟练了，具体的项目内容总结后续会接着写一篇来讲。总之，经过这次项目优化，学习到了如何让自己的项目结构更加清晰，项目细节更加完美，而不是像之前按那样大锅炖，毫无可维护性和可扩展性，或许自己使用没问题，但是更多还是需要考虑到自己的代码或许有一天会被别人阅读，如果不想被别人吐槽的话还是老实的做好结构优化吧！</p>
+<p><img src="/img/srs_end.png" alt="srs_end"></p>
+<p>作者 ： PrConstantin<br>来源 ： <a href="http://constantin.cc" target="_blank" rel="noopener">http://constantin.cc</a>  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/09/ssh_tunnel/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          用ssh -L 搭一个本地转发隧道访问内网数据库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/09/srs_all/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建数据分析流程化系统</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Constantin
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":0.6,"hHeadPos":1,"vHeadPos":1,"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json"},"display":{"superSample":2,"width":80,"height":170,"position":"left","hOffset":15,"vOffset":-65},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
+</html>
